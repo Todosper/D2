@@ -1,0 +1,37 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Gerenciar Músicas</h1>
+<form method="get" action="/musica/lst" style="margin-bottom: 16px;">
+    <input type="text" name="busca" placeholder="Pesquisar por nome, artista ou gênero" value="<%= typeof busca !== 'undefined' ? busca : '' %>">
+    <button type="submit">Buscar</button>
+</form>
+<a href="/musica/add">+ Nova Música</a>
+<table>
+    <tr>
+        <td>Imagem</td>
+        <td>Nome</td>
+        <td>Artista</td>
+        <td>Gênero</td>
+        <td>Ações</td>
+    </tr>
+    <% if (Musicas.length === 0) { %>
+        <tr><td colspan="5">nada foi encontrado, verifique se digitou corretamente</td></tr>
+    <% } else { %>
+        <% for (const m of Musicas) { %>
+        <tr>
+            <td>
+                <% if (m.imagem) { %>
+                    <img src="<%= m.imagem %>" alt="imagem" style="width:80px; height:auto">
+                <% } %>
+            </td>
+            <td><%= m.nome %></td>
+            <td><%= m.artista %></td>
+            <td><%= m.genero %></td>
+            <td>
+                    <a href="/musica/edt/<%= m._id %>" class="btn edit"><i class="fa fa-pen"></i> Editar</a>
+                    <a href="/musica/del/<%= m._id %>" class="btn delete"><i class="fa fa-trash"></i> Excluir</a>
+            </td>
+        </tr>
+        <% } %>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

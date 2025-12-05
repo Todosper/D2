@@ -1,0 +1,52 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Editar Música</h1>
+<form method="post" action="/musica/edt/<%= Musica._id %>" enctype="multipart/form-data">
+    <div>
+        <label>Artista</label>
+        <input type="text" name="artista" value="<%= Musica.artista %>" required>
+    </div>
+    <div>
+        <label>Nome da música</label>
+        <input type="text" name="nome" value="<%= Musica.nome %>" required>
+    </div>
+    <div>
+        <label>Gênero</label>
+        <input type="text" name="genero" value="<%= Musica.genero %>" required>
+    </div>
+    <div>
+        <label>Cifra</label>
+        <div>
+            <label><input type="radio" name="cifra_tipo" value="texto" checked> Enviar texto</label>
+            <label><input type="radio" name="cifra_tipo" value="arquivo"> Enviar arquivo .txt</label>
+        </div>
+        <div id="cifra_text_div">
+            <textarea name="cifra_text"><%= Musica.cifra %></textarea>
+        </div>
+        <div id="cifra_file_div" style="display:none">
+            <input type="file" name="cifra_file" accept=".txt">
+        </div>
+    </div>
+    <div>
+        <label>Imagem (capa)</label>
+        <% if (Musica.imagem) { %>
+            <div><img src="<%= Musica.imagem %>" style="width:120px;height:auto"></div>
+        <% } %>
+        <input type="file" name="imagem" accept="image/*">
+    </div>
+    <div>
+        <label>Link do YouTube</label>
+        <input type="text" name="youtube" value="<%= Musica.youtube %>">
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>
+
+<script>
+document.querySelectorAll('input[name="cifra_tipo"]').forEach(r => {
+    r.addEventListener('change', () => {
+        const tipo = document.querySelector('input[name="cifra_tipo"]:checked').value
+        document.getElementById('cifra_text_div').style.display = tipo === 'texto' ? 'block' : 'none'
+        document.getElementById('cifra_file_div').style.display = tipo === 'arquivo' ? 'block' : 'none'
+    })
+})
+</script>

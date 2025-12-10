@@ -1,0 +1,15 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Editar Album</h1>
+<form method="post" action="/album/edt/<%= Item._id %>" enctype="multipart/form-data">
+    <div><label>Nome</label><input type="text" name="nome" value="<%= Item.nome %>" required></div>
+    <div><label>Artista</label><input type="text" name="artista" value="<%= Item.artista %>"></div>
+    <div><label>Gênero</label><input type="text" name="genero" value="<%= Item.genero %>"></div>
+    <div><label>Ano</label><input type="number" name="ano" value="<%= Item.ano %>"></div>
+    <div>
+        <label>Imagem</label>
+        <% if (Item.imagem) { %><div><img src="<%= Item.imagem %>" style="width:120px"></div><% } %>
+        <input type="file" name="imagem" accept="image/*">
+    </div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>

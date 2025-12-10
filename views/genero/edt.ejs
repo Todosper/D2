@@ -1,0 +1,8 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Editar Gênero</h1>
+<form method="post" action="/genero/edt/<%= Item._id %>">
+    <div><label>Nome</label><input type="text" name="nome" value="<%= Item.nome %>" required></div>
+    <div><label>Descrição</label><textarea name="descricao"><%= Item.descricao %></textarea></div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>

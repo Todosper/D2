@@ -1,5 +1,9 @@
 <%-include('../cabecalho.ejs')%>
 <h1>Músicas</h1>
+
+<!-- link para admin -->
+<p><a href="/musica/lst" class="btn">Ir para Admin Músicas</a></p>
+
 <form method="get" action="/musica" style="margin-bottom: 16px;">
     <input type="text" name="busca" placeholder="Pesquisar por nome, artista ou gênero" value="<%= typeof busca !== 'undefined' ? busca : '' %>">
     <button type="submit">Buscar</button>

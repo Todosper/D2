@@ -1,0 +1,18 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Gerenciar Gêneros</h1>
+<a href="/genero/add">+ Novo Gênero</a>
+<table>
+    <tr><td>Nome</td><td>Descrição</td><td>Ações</td></tr>
+    <% if (Items.length === 0) { %><tr><td colspan="3">Nenhum gênero</td></tr><% } else { %>
+        <% for (const it of Items) { %>
+        <tr>
+            <td><%= it.nome %></td><td><%= it.descricao %></td>
+            <td>
+                <a href="/genero/edt/<%= it._id %>" class="btn edit">Editar</a>
+                <a href="/genero/del/<%= it._id %>" class="btn delete">Excluir</a>
+            </td>
+        </tr>
+        <% } %>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

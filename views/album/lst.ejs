@@ -1,0 +1,19 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Gerenciar Albums</h1>
+<a href="/album/add">+ Novo Album</a>
+<table>
+    <tr><td>Imagem</td><td>Nome</td><td>Artista</td><td>Gênero</td><td>Ano</td><td>Ações</td></tr>
+    <% if (Items.length === 0) { %><tr><td colspan="6">Nenhum album</td></tr><% } else { %>
+        <% for (const it of Items) { %>
+        <tr>
+            <td><% if (it.imagem) { %><img src="<%= it.imagem %>" style="width:80px"><% } %></td>
+            <td><%= it.nome %></td><td><%= it.artista %></td><td><%= it.genero %></td><td><%= it.ano %></td>
+            <td>
+                <a href="/album/edt/<%= it._id %>" class="btn edit">Editar</a>
+                <a href="/album/del/<%= it._id %>" class="btn delete">Excluir</a>
+            </td>
+        </tr>
+        <% } %>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

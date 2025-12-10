@@ -1,0 +1,8 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Adicionar Gênero</h1>
+<form method="post" action="/genero/add">
+    <div><label>Nome</label><input type="text" name="nome" required></div>
+    <div><label>Descrição</label><textarea name="descricao"></textarea></div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>

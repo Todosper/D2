@@ -1,0 +1,11 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Adicionar Album</h1>
+<form method="post" action="/album/add" enctype="multipart/form-data">
+    <div><label>Nome</label><input type="text" name="nome" required></div>
+    <div><label>Artista</label><input type="text" name="artista"></div>
+    <div><label>Gênero</label><input type="text" name="genero"></div>
+    <div><label>Ano</label><input type="number" name="ano"></div>
+    <div><label>Imagem</label><input type="file" name="imagem" accept="image/*"></div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>

@@ -1,0 +1,9 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Adicionar Artista</h1>
+<form method="post" action="/artista/add" enctype="multipart/form-data">
+    <div><label>Nome</label><input type="text" name="nome" required></div>
+    <div><label>Bio</label><textarea name="bio"></textarea></div>
+    <div><label>Imagem</label><input type="file" name="imagem" accept="image/*"></div>
+    <button type="submit">Salvar</button>
+</form>
+<%-include('../rodape.ejs')%>

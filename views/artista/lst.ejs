@@ -1,0 +1,21 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Gerenciar Artistas</h1>
+<a href="/artista/add">+ Novo Artista</a>
+<table>
+    <tr><td>Imagem</td><td>Nome</td><td>Ações</td></tr>
+    <% if (Items.length === 0) { %>
+        <tr><td colspan="3">Nenhum artista</td></tr>
+    <% } else { %>
+        <% for (const it of Items) { %>
+        <tr>
+            <td><% if (it.imagem) { %><img src="<%= it.imagem %>" style="width:80px"><% } %></td>
+            <td><%= it.nome %></td>
+            <td>
+                <a href="/artista/edt/<%= it._id %>" class="btn edit">Editar</a>
+                <a href="/artista/del/<%= it._id %>" class="btn delete">Excluir</a>
+            </td>
+        </tr>
+        <% } %>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

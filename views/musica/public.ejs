@@ -1,74 +1,16 @@
 <%-include('../cabecalho.ejs')%>
 <h1>Músicas</h1>
-
-<!-- link para admin -->
-<p><a href="/musica/lst" class="btn">Ir para Admin Músicas</a></p>
-
-<form method="get" action="/musica" style="margin-bottom: 16px;">
-    <input type="text" name="busca" placeholder="Pesquisar por nome, artista ou gênero" value="<%= typeof busca !== 'undefined' ? busca : '' %>">
-    <button type="submit">Buscar</button>
-</form>
 <div class="music-list">
-    <% if (Musicas.length === 0) { %>
-        <p>Nenhuma música encontrada.</p>
-    <% } else { %>
-        <% for (const m of Musicas) { %>
-            <div class="music-item">
-                <div class="music-summary">
-                    <h3><%= m.nome %></h3>
-                    <button type="button" class="expand-btn">Expanda</button>
-                </div>
-                <div class="music-details" style="display:none; margin-top:8px;">
-                    <div style="display:flex; gap:16px; align-items:flex-start;">
-                        <div>
-                            <% if (m.imagem) { %>
-                                <img src="<%= m.imagem %>" alt="capa" style="width:120px;height:auto">
-                            <% } %>
-                        </div>
-                        <div>
-                            <p><strong>Artista:</strong> <%= m.artista %></p>
-                            <p><strong>Gênero:</strong> <%= m.genero %></p>
-                            <% if (m.letra) { %>
-                                <p><strong>Letra:</strong> <br><pre style="white-space:pre-wrap"><%= m.letra %></pre></p>
-                            <% } %>
-                            <% if (m.cifra) { %>
-                                <details><summary>Mostrar cifra</summary><pre style="white-space:pre-wrap"><%= m.cifra %></pre></details>
-                            <% } %>
-                            <% if (m.youtube) { %>
-                                <div class="video" style="margin-top:8px;">
-                                    <% 
-                                        const yt = m.youtube || '';
-                                        let embed = '';
-                                        const match = yt.match(/(?:v=|be\/)([A-Za-z0-9_-]{11})/);
-                                        if (match) embed = 'https://www.youtube.com/embed/' + match[1];
-                                    %>
-                                    <% if (embed) { %>
-                                        <iframe width="320" height="180" src="<%= embed %>" frameborder="0" allowfullscreen></iframe>
-                                    <% } else { %>
-                                        <a href="<%= m.youtube %>" target="_blank">Ouvir no YouTube</a>
-                                    <% } %>
-                                </div>
-                            <% } %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% } %>
+  <% if (Musicas.length === 0) { %>
+    <p>Nenhuma música encontrada.</p>
+  <% } else { %>
+    <% for (const m of Musicas) { %>
+      <div class="music-item">
+        <h3><%= m.nome %></h3>
+        <p><strong>Artista:</strong> <%= m.artista %></p>
+        <p><strong>Gênero:</strong> <%= m.genero %></p>
+      </div>
     <% } %>
+  <% } %>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.music-item').forEach(function(item){
-        var btn = item.querySelector('.expand-btn');
-        var details = item.querySelector('.music-details');
-        if (!btn || !details) return;
-        btn.addEventListener('click', function(){
-            var isHidden = details.style.display === 'none' || details.style.display === '';
-            details.style.display = isHidden ? 'block' : 'none';
-            btn.textContent = isHidden ? 'Fechar' : 'Expanda';
-        });
-    });
-});
-</script>
 <%-include('../rodape.ejs')%>

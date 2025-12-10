@@ -1,0 +1,20 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Álbuns</h1>
+<div class="album-list">
+  <% if (Items.length === 0) { %>
+    <p>Nenhum álbum encontrado.</p>
+  <% } else { %>
+    <% for (const it of Items) { %>
+      <div class="album-item">
+        <h3><%= it.nome %></h3>
+        <% if (it.imagem) { %>
+          <img src="<%= it.imagem %>" alt="Imagem do Álbum" style="width:120px;">
+        <% } %>
+        <p><strong>Artista:</strong> <%= it.artista %></p>
+        <p><strong>Gênero:</strong> <%= it.genero %></p>
+        <p><strong>Ano:</strong> <%= it.ano %></p>
+      </div>
+    <% } %>
+  <% } %>
+</div>
+<%-include('../rodape.ejs')%>

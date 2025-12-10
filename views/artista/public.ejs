@@ -1,0 +1,18 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Artistas</h1>
+<div class="artist-list">
+  <% if (Items.length === 0) { %>
+    <p>Nenhum artista encontrado.</p>
+  <% } else { %>
+    <% for (const it of Items) { %>
+      <div class="artist-item">
+        <h3><%= it.nome %></h3>
+        <% if (it.imagem) { %>
+          <img src="<%= it.imagem %>" alt="Imagem do Artista" style="width:120px;">
+        <% } %>
+        <p><%= it.bio %></p>
+      </div>
+    <% } %>
+  <% } %>
+</div>
+<%-include('../rodape.ejs')%>

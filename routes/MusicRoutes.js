@@ -20,7 +20,7 @@ const upload = multer({ storage })
 const caminhobase = 'musica/'
 
 // Public list and search
-router.get('/' + caminhobase, controle.publicList)
+router.get('/' + caminhobase + 'public', controle.publicList)
 
 // Admin
 router.get('/' + caminhobase + 'add', controle.openAdd)

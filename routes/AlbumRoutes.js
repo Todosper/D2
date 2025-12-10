@@ -19,7 +19,8 @@ const upload = multer({ storage })
 
 const caminhobase = 'album/'
 
-router.get('/' + caminhobase, controle.publicList)
+// Public list and search
+router.get('/' + caminhobase + 'public', controle.publicList)
 router.get('/' + caminhobase + 'add', controle.openAdd)
 router.post('/' + caminhobase + 'add', upload.any(), controle.add)
 router.get('/' + caminhobase + 'lst', controle.list)

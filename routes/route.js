@@ -11,6 +11,8 @@ import AlbumRoutes from './AlbumRoutes.js'
 router.get('/', controle.home)
 router.get('/teste', controle.teste)
 router.post('/formulario', controle.formulario)
+router.get('/cliente', (req, res) => res.render('cliente'));
+router.get('/adm', (req, res) => res.render('adm'));
 
 router.use(MusicRoutes)
 router.use(ArtistRoutes)

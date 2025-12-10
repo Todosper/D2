@@ -5,6 +5,8 @@ const controle = new GeneroController()
 
 const caminhobase = 'genero/'
 
+// Public list and search
+router.get('/' + caminhobase + 'public', controle.publicList)
 router.get('/' + caminhobase, controle.publicList)
 router.get('/' + caminhobase + 'add', controle.openAdd)
 router.post('/' + caminhobase + 'add', controle.add)

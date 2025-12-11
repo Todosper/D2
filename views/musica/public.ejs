@@ -9,8 +9,35 @@
         <h3><%= m.nome %></h3>
         <p><strong>Artista:</strong> <%= m.artista %></p>
         <p><strong>Gênero:</strong> <%= m.genero %></p>
+        <% if (m.imagem) { %>
+          <div class="music-image">
+            <img src="<%= m.imagem %>" alt="Imagem de <%= m.nome %>" style="max-width:200px;max-height:200px;"/>
+          </div>
+        <% } %>
+        <div class="music-actions">
+          <% if (m.cifra && m.cifra.trim().length > 0) { %>
+            <button class="btn-cifra" data-id="<%= m._id %>">Ver cifra</button>
+          <% } else { %>
+            <span class="sem-cifra">Sem cifra disponível</span>
+          <% } %>
+        </div>
+        <% if (m.cifra && m.cifra.trim().length > 0) { %>
+          <div id="cifra-<%= m._id %>" class="cifra-content" style="display:none; white-space:pre-wrap; margin-top:8px; border:1px solid #ddd; padding:8px; background:#fafafa;">
+            <pre><%= m.cifra %></pre>
+          </div>
+        <% } %>
       </div>
     <% } %>
   <% } %>
 </div>
+<script>
+  document.addEventListener('click', function (e) {
+    if (!e.target.matches('.btn-cifra')) return
+    const id = e.target.getAttribute('data-id')
+    const el = document.getElementById('cifra-' + id)
+    if (!el) return
+    el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none'
+    e.target.textContent = (el.style.display === 'block') ? 'Esconder cifra' : 'Ver cifra'
+  })
+</script>
 <%-include('../rodape.ejs')%>

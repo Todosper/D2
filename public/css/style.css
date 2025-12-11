@@ -1,143 +1,101 @@
-/* Estilos Gerais */
-body {
-    font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f0f2f5;
-    margin: 0;
-    padding: 0;
-    color: #333;
+:root{
+    --bg:#f6f7fb;
+    --card:#ffffff;
+    --text:#2f2f33;
+    --muted:#6b6f76;
+    --primary:#2563eb; /* azul */
+    --success:#16a34a;
+    --danger:#dc2626;
+    --accent:#7c3aed;
+    --glass: rgba(255,255,255,0.6);
+    --radius:10px;
+    --shadow: 0 6px 18px rgba(22,28,37,0.08);
 }
 
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
+/* Reset / Base */
+*{box-sizing:border-box}
+body{
+    font-family: Inter, Roboto, 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(180deg,var(--bg), #eef2ff 120%);
+    margin:0;
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
 }
 
-h1 {
-    text-align: center;
-    color: #444;
-    margin-bottom: 20px;
+.container{
+    background:var(--card);
+    padding:28px;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    width:92%;
+    max-width:1200px;
+    margin:28px auto;
 }
 
-/* Menu de Navegação */
-.menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
+h1{font-size:1.75rem;text-align:center;color:var(--text);margin:0 0 18px}
 
-.menu ul li a {
-    text-decoration: none;
-    color: #fff;
-    background-color: #007bff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+/* Top bar / Menu */
+.menu{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+.menu .logo{font-weight:700;color:var(--primary);font-size:1.1rem}
+.menu ul{list-style:none;padding:0;margin:0;display:flex;gap:10px}
+.menu ul li a{display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;background:var(--primary);color:#fff;transition:transform .15s ease,box-shadow .15s ease}
+.menu ul li a:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(37,99,235,0.12)}
 
-.menu ul li a:hover {
-    background-color: #0056b3;
-}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600;font-size:.95rem}
+.btn:focus{outline:3px solid rgba(37,99,235,0.12)}
+.btn-primary{background:linear-gradient(180deg,var(--primary),#1e40af);color:#fff}
+.btn-success{background:linear-gradient(180deg,var(--success),#15803d);color:#fff}
+.btn-warning{background:linear-gradient(180deg,#f59e0b,#d97706);color:#fff}
+.btn-danger{background:linear-gradient(180deg,var(--danger),#991b1b);color:#fff}
+.btn.ghost{background:transparent;border:1px solid rgba(0,0,0,0.06);color:var(--text)}
+.btn:hover{filter:brightness(.98)}
 
-/* Botões */
-.btn {
-    display: inline-block;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
+/* Cards / pequenas zonas */
+.card{background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.9));padding:16px;border-radius:12px;box-shadow:0 4px 14px rgba(2,6,23,0.04)}
 
-.btn {
-    background-color: #28a745;
-    color: #fff;
-}
+/* Tabelas limpas e responsivas */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:.98rem}
+table th, table td{padding:12px 14px;text-align:left;border-bottom:1px solid #eef2f6}
+table th{background:transparent;color:var(--muted);font-weight:600}
+table tr:hover{background:linear-gradient(90deg, rgba(37,99,235,0.03), transparent)}
 
-.btn.edit {
-    background-color: #ffc107;
-    color: #000;
-}
-
-.btn.delete {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-.btn:hover {
-    opacity: 0.9;
-}
-
-/* Tabelas */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table th, table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-table th {
-    background-color: #f8f9fa;
-    color: #555;
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
+/* Transformar tabela em lista-card em telas pequenas */
+@media (max-width:720px){
+    table, thead, tbody, th, td, tr{display:block}
+    thead{display:none}
+    tr{margin-bottom:12px}
+    td{padding:10px;background:var(--card);border-radius:10px;margin-bottom:8px}
+    td:before{content:attr(data-label);font-weight:700;display:block;color:var(--muted);margin-bottom:6px}
 }
 
 /* Formulários */
-form {
-    margin-bottom: 20px;
+form{margin:0}
+input[type='text'], input[type='email'], input[type='password'], textarea, select{
+    width:100%;padding:10px 12px;border-radius:8px;border:1px solid #e6e9ef;background:#fff;transition:box-shadow .12s ease,border-color .12s ease
 }
+input:focus, textarea:focus, select:focus{outline:none;border-color:var(--primary);box-shadow:0 6px 20px rgba(37,99,235,0.06)}
 
-form input, form textarea, form select {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+/* Botão de submit no form */
+form button, .form-actions .btn{padding:10px 14px}
 
-form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-}
+/* Uploads / lista de arquivos */
+.uploads{display:flex;flex-direction:column;gap:8px}
+.file-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:#fbfbfe;border:1px solid #f1f5f9}
+.file-name{color:var(--muted);font-size:.95rem}
 
-form button:hover {
-    background-color: #0056b3;
-}
+/* Pequenas melhorias de responsividade */
+@media (max-width:1024px){.container{padding:20px;width:95%}}
+@media (max-width:600px){h1{font-size:1.3rem}.menu ul{flex-wrap:wrap;justify-content:center}}
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .menu ul {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Helpers */
+.text-muted{color:var(--muted)}
+.center{display:flex;align-items:center;justify-content:center}
 
-    table {
-        font-size: 14px;
-    }
+/* Mantendo compatibilidade com classes existentes */
+.btn.edit{background:linear-gradient(180deg,#fbbf24,#f59e0b);color:#000}
+.btn.delete{background:linear-gradient(180deg,var(--danger),#7f1d1d);color:#fff}
 
-    .container {
-        width: 95%;
-    }
-}
+/* Pequeno ajuste para inputs em formulários já existentes */
+form input, form textarea, form select{margin:8px 0}
